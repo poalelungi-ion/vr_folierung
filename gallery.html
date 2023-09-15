@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/favicon.jpg" rel="icon">
+  <link href="assets/img/favicon.jpg" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,13 +28,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: PhotoFolio
-  * Updated: Jul 27 2023 with Bootstrap v5.3.1
-  * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -81,53 +74,8 @@
         </div>
       </div>
     </div><!-- End Page Header -->
-
-
-    <section id="gallery" class="gallery">
-      <div class="container-fluid">
-        <div class="row gy-4 justify-content-center" id="instagram-gallery">
-          <!-- Instagram gallery items will be inserted here -->
-        </div>
-      </div>
-    </section>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      // Instagram Access Token
-      var token = 'IGQWROdWdHc0VBb0pFRHlCNlFvY3hwNm9pR1c4MDVEaTJaSjlaQzFUUDdhYTctNFZAvbkd2VmxrakVCTjRxYWRSbC1CcEQ0YVJQVlRfOG0yWnlFenZAXZAWh6dE1VVzBfUGs2Mmx1bFc3NVpaQQZDZD';
-
-      $.ajax({
-        url: 'https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=' + token,
-        type: 'GET',
-        success: function(data){
-          // Loop through the result
-          for (var i = 0; i < data.data.length; i++) {
-            var item = data.data[i];
-            if(item.media_type == "IMAGE"){
-              // Create a new div with the class 'col-xl-3 col-lg-4 col-md-6'
-              var div = $("<div>").addClass("col-xl-3 col-lg-4 col-md-6");
-              var galleryItem = $("<div>").addClass("gallery-item h-100");
-              var img = $("<img>").attr("src", item.media_url).addClass("img-fluid").attr("alt", "");
-              var galleryLinks = $("<div>").addClass("gallery-links d-flex align-items-center justify-content-center");
-              var a1 = $("<a>").attr("href", item.media_url).attr("title", "Gallery " + (i+1)).addClass("glightbox preview-link");
-              var i1 = $("<i>").addClass("bi bi-arrows-angle-expand");
-              var a2 = $("<a>").attr("href", "gallery-single.html").addClass("details-link");
-              var i2 = $("<i>").addClass("bi bi-link-45deg");
-
-              // Append everything
-              a1.append(i1);
-              a2.append(i2);
-              galleryLinks.append(a1).append(a2);
-              galleryItem.append(img).append(galleryLinks);
-              div.append(galleryItem);
-
-              // Append the new div to the container
-              $("#instagram-gallery").append(div);
-            }
-          }
-        }
-      });
-    </script>
+    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+    <div class="elfsight-app-b90108e9-cb9d-4730-850a-f2a805a2ad47"></div>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
