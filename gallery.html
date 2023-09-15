@@ -39,54 +39,35 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
+<header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <i class="bi bi-camera"></i>
-        <h1>PhotoFolio</h1>
-      </a>
+    <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li class="dropdown"><a href="#" class="active"><span>Gallery</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="gallery.html">Nature</a></li>
-              <li><a href="gallery.html">People</a></li>
-              <li><a href="gallery.html">Architecture</a></li>
-              <li><a href="gallery.html">Animals</a></li>
-              <li><a href="gallery.html">Sports</a></li>
-              <li><a href="gallery.html">Travel</a></li>
-              <li class="dropdown"><a href="#"><span>Sub Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Sub Menu 1</a></li>
-                  <li><a href="#">Sub Menu 2</a></li>
-                  <li><a href="#">Sub Menu 3</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav><!-- .navbar -->
+      <img src="assets/img/gallery/be285b88-d887-4a0b-bb39-68b6c5bdb251.jpg" alt="">
+    </a>
 
-      <div class="header-social-links">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Photos</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav><!-- .navbar -->
 
+    <div class="header-social-links">
+      <a href="#" class="twitter"><i class="bi bi-youtube"></i></a>
+      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+      <a href="#" class="linkedin"><i class="bi bi-whatsapp"></i></i></a>
     </div>
-  </header><!-- End Header -->
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+  </div>
+</header><!-- End Header -->
 
   <main id="main" data-aos="fade" data-aos-delay="1500">
 
@@ -101,56 +82,52 @@
       </div>
     </div><!-- End Page Header -->
 
+
     <section id="gallery" class="gallery">
       <div class="container-fluid">
-        <div class="row gy-4 justify-content-center" id="instagram-gallery"></div>
+        <div class="row gy-4 justify-content-center" id="instagram-gallery">
+          <!-- Instagram gallery items will be inserted here -->
+        </div>
       </div>
     </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       // Instagram Access Token
-      var token = '\t\n' +
-              'IGQWRPZAjBpVTY0dlVMczFMVGpUdFdTYUs0WjFMcEJ0M2podEgyY1E3VVJQZAEh1ZAlpzZA2R3WEFDZAFpkRklLcXlkbURkS0FmZAHBHWnBxQVljZADlHVGpRR1QtNVFZAVUhHSlBUSS1Lb0sxenlkUQZDZD';
+      var token = 'IGQWRNakNhZAFEwQWNZAbHc1OTl2blZA0WmptVXhQeUhjanhOME8tNlVPeURLRHJFNVgyY25EVGJFek1GbjQwb0VhTU1SakVFSTBFbDdFWXdCNGZAlN1oyTG1HSjNET0xaTjA1YkJLaWZAjRnZAjUQZDZD';
 
       $.ajax({
         url: 'https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=' + token,
         type: 'GET',
         success: function(data){
-          // Check if there is data and it contains images
-          if(data && data.data && data.data.length > 0){
-            var galleryContainer = $("#instagram-gallery");
+          // Loop through the result
+          for (var i = 0; i < data.data.length; i++) {
+            var item = data.data[i];
+            if(item.media_type == "IMAGE"){
+              // Create a new div with the class 'col-xl-3 col-lg-4 col-md-6'
+              var div = $("<div>").addClass("col-xl-3 col-lg-4 col-md-6");
+              var galleryItem = $("<div>").addClass("gallery-item h-100");
+              var img = $("<img>").attr("src", item.media_url).addClass("img-fluid").attr("alt", "");
+              var galleryLinks = $("<div>").addClass("gallery-links d-flex align-items-center justify-content-center");
+              var a1 = $("<a>").attr("href", item.media_url).attr("title", "Gallery " + (i+1)).addClass("glightbox preview-link");
+              var i1 = $("<i>").addClass("bi bi-arrows-angle-expand");
+              var a2 = $("<a>").attr("href", "gallery-single.html").addClass("details-link");
+              var i2 = $("<i>").addClass("bi bi-link-45deg");
 
-            // Loop through the result
-            for (var i = 0; i < data.data.length; i++) {
-              var item = data.data[i];
-              if(item.media_type == "IMAGE"){
-                // Create a new div with the class 'col-xl-3 col-lg-4 col-md-6'
-                var div = $("<div>").addClass("col-xl-3 col-lg-4 col-md-6");
-                var galleryItem = $("<div>").addClass("gallery-item h-100");
-                var img = $("<img>").attr("src", item.media_url).addClass("img-fluid").attr("alt", "");
-                var galleryLinks = $("<div>").addClass("gallery-links d-flex align-items-center justify-content-center");
-                var a1 = $("<a>").attr("href", item.media_url).attr("title", "Gallery " + (i+1)).addClass("glightbox preview-link");
-                var i1 = $("<i>").addClass("bi bi-arrows-angle-expand");
-                var a2 = $("<a>").attr("href", "gallery-single.html").addClass("details-link");
-                var i2 = $("<i>").addClass("bi bi-link-45deg");
+              // Append everything
+              a1.append(i1);
+              a2.append(i2);
+              galleryLinks.append(a1).append(a2);
+              galleryItem.append(img).append(galleryLinks);
+              div.append(galleryItem);
 
-                // Append everything
-                a1.append(i1);
-                a2.append(i2);
-                galleryLinks.append(a1).append(a2);
-                galleryItem.append(img).append(galleryLinks);
-                div.append(galleryItem);
-
-                // Append the new div to the container
-                galleryContainer.append(div);
-              }
+              // Append the new div to the container
+              $("#instagram-gallery").append(div);
             }
           }
         }
       });
     </script>
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
