@@ -24,7 +24,7 @@
 /* Colors */
 :root {
   --color-default: #fafafa;
-  --color-primary: #a17400;
+  --color-primary: #05a100;
   --color-secondary: #161718;
 }
 
@@ -144,7 +144,7 @@ h6 {
 }
 
 .page-header .cta-btn:hover {
-  background: #2cbc85;
+  background: #b28104;
 }
 
 /*--------------------------------------------------------------
@@ -731,7 +731,7 @@ h6 {
 # Pricing Section
 --------------------------------------------------------------*/
 .gallery {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .gallery .gallery-item {
