@@ -10,8 +10,26 @@
 # Set main reusable colors and fonts using CSS variables
 # Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
 --------------------------------------------------------------*/
-/* Fonts */
-
+.vid {
+  border-radius: 20px;}
+/* Fonts */ @media(max-width: 768px) {
+  .vid {
+    border-radius: 20px;
+    height: 220px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1366px) {
+  .vid {
+    border-radius: 20px;
+    height: 400px;
+  }
+  }
+@media(max-width: 768px ) {
+  .vid {
+    border-radius: 20px;
+    height: 220px;
+  }
+}
 @media (max-width: 768px) {
   .page-header .img {width: 100px;}
 }
